@@ -54,7 +54,7 @@ sonarqube {
 	properties {
 		property "sonar.projectKey", "sitas-backend"
 		property 'sonar.coverage.jacoco.xmlReportPaths', "${project.buildDir}/reports/jacoco/test/jacocoTestReport.xml"
-		property 'sonar.coverage.exclusions', "src/main/java/vx/sitas/sitas-backend/config/**, src/main/java/vx/sitas/sitas-backend/security/**, src/main/java/vx/sitas/sitas-backend/ServletInitializer.java"
-		property 'sonar.cpd.exclusions', "src/main/java/vx/sitas/sitas-backend/config/**, src/main/java/vx/sitas/sitas-backend/security/**"
+		property 'sonar.coverage.exclusions', "src/main/java/vx/sitas/sitas_backend/config/**, src/main/java/vx/sitas/sitas_backend/security/**, src/main/java/vx/sitas/sitas_backend/ServletInitializer.java"
+		property 'sonar.cpd.exclusions', "src/main/java/vx/sitas/sitas_backend/config/**, src/main/java/vx/sitas/sitas_backend/security/**"
 	}
 }
