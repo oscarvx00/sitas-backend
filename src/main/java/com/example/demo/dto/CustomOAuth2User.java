@@ -1,4 +1,4 @@
-package com.example.demo.security;
+package com.example.demo.dto;
 
 import net.minidev.json.JSONObject;
 import netscape.javascript.JSObject;
@@ -22,10 +22,10 @@ public class CustomOAuth2User {
         DISCORD
     }
 
-    public CustomOAuth2User(DefaultOAuth2User defaultOAuth2User) throws Exception{
-        this.username = defaultOAuth2User.getName();
-        this.email = Objects.toString(defaultOAuth2User.getAttributes().get("email"), "");
-        this.identifier = generateIdentifier(defaultOAuth2User.getName(),defaultOAuth2User.getAttributes());
+    public CustomOAuth2User(Map<String, Object> attributes, String name) throws Exception{
+        this.username = name;
+        this.email = Objects.toString(attributes.get("email"), "");
+        this.identifier = generateIdentifier(name,attributes);
     }
 
     private String generateIdentifier(String username, Map<String, Object> attributes) throws Exception{
@@ -72,4 +72,15 @@ public class CustomOAuth2User {
         return map;
     }
 
+    public String getIdentifier() {
+        return identifier;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getUsername() {
+        return username;
+    }
 }

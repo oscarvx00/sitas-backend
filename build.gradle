@@ -3,6 +3,8 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.14.RELEASE'
 	id 'java'
 	id 'war'
+	id 'jacoco'
+	id "org.sonarqube" version "3.4.0.2513"
 }
 
 group = 'com.example'
@@ -36,6 +38,23 @@ dependencies {
 
 }
 
-tasks.named('test') {
+jacocoTestReport {
+	dependsOn test
+	reports {
+		xml.enabled true
+		csv.enabled false
+	}
+}
+
+test {
 	useJUnitPlatform()
+}
+
+sonarqube {
+	properties {
+		property "sonar.projectKey", "sitas-backend"
+		property 'sonar.coverage.jacoco.xmlReportPaths', "${project.buildDir}/reports/jacoco/all-tests/jacocoAllTestReport.xml"
+		property 'sonar.coverage.exclusions', "src/main/java/coim/example/demo/config/**, src/main/java/coim/example/demo/security/**"
+		property 'sonar.cpd.exclusions', "src/main/java/coim/example/demo/config/**, src/main/java/coim/example/demo/security/**"
+	}
 }
