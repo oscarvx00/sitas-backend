@@ -14,7 +14,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .oauth2Login()
                 .permitAll()
-                .defaultSuccessUrl("http://localhost:4200/me")
+                //.defaultSuccessUrl("http://localhost:4200/me")
+                .defaultSuccessUrl("http://oscarvx00.ddns.net:31000/me")
                 .and()
                 .logout().logoutSuccessUrl("/");
     }

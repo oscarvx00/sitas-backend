@@ -15,6 +15,7 @@ spec:
       containers:
         - name: sitas-backend
           image: oscarvicente/sitas-backend-prod
+          imagePullPolicy: Always
           env:
             - name: GOOGLE_CLIENT_ID
               valueFrom:
