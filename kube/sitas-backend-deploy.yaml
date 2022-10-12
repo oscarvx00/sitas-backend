@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sitas-backend
+  namespace: sitas
+spec:
+  selector:
+    matchLabels:
+      app: sitas-backend
+  template:
+    metadata:
+      labels:
+        app: sitas-backend
+    spec:
+      containers:
+        - name: sitas-backend
+          image: oscarvicente/sitas-backend-prod
+          env:
+            - name: GOOGLE_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: sitas-backend-secret
+                  key: GOOGLE_CLIENT_ID
+            - name: GOOGLE_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: sitas-backend-secret
+                  key: GOOGLE_SECRET
+            - name: GITHUB_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: sitas-backend-secret
+                  key: GITHUB_CLIENT_ID
+            - name: GITHUB_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: sitas-backend-secret
+                  key: GITHUB_SECRET
+            - name: DISCORD_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: sitas-backend-secret
+                  key: DISCORD_CLIENT_ID
+            - name: DISCORD_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: sitas-backend-secret
+                  key: DISCORD_SECRET
