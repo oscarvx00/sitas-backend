@@ -53,7 +53,7 @@ test {
 sonarqube {
 	properties {
 		property "sonar.projectKey", "sitas-backend"
-		property 'sonar.coverage.jacoco.xmlReportPaths', "${project.buildDir}/reports/jacoco/all-tests/jacocoAllTestReport.xml"
+		property 'sonar.coverage.jacoco.xmlReportPaths', "${project.buildDir}/reports/jacoco/tests/jacocoAllTestReport.xml"
 		property 'sonar.coverage.exclusions', "src/main/java/coim/example/demo/config/**, src/main/java/coim/example/demo/security/**"
 		property 'sonar.cpd.exclusions', "src/main/java/coim/example/demo/config/**, src/main/java/coim/example/demo/security/**"
 	}
