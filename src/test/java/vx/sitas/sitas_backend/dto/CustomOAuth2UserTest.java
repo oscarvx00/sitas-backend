@@ -1,8 +1,7 @@
-package com.example.demo.dto;
+package vx.sitas.sitas_backend.dto;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 
 import java.util.HashMap;
 import java.util.Map;

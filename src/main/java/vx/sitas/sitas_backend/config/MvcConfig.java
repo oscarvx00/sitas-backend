@@ -1,4 +1,4 @@
-package com.example.demo.config;
+package vx.sitas.sitas_backend.config;
 
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;

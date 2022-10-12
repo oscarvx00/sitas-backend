@@ -1,4 +1,4 @@
-package com.example.demo.dto;
+package vx.sitas.sitas_backend.dto;
 
 import net.minidev.json.JSONObject;
 import netscape.javascript.JSObject;

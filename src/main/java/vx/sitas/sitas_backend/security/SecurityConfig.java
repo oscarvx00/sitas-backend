@@ -1,4 +1,4 @@
-package com.example.demo.security;
+package vx.sitas.sitas_backend.security;
 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
