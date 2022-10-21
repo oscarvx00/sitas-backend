@@ -34,11 +34,6 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.springframework.security/spring-security-test
 	testImplementation group: 'org.springframework.security', name: 'spring-security-test', version: '5.7.4'
 
-	testImplementation 'com.c4-soft.springaddons:spring-addons:6.0.2'
-
-
-
-
 
 }
 
