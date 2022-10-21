@@ -31,6 +31,10 @@ dependencies {
 	implementation group: 'org.springframework.security', name: 'spring-security-oauth2-jose', version: '5.7.3'
 	// https://mvnrepository.com/artifact/com.google.code.gson/gson
 	implementation group: 'com.google.code.gson', name: 'gson', version: '2.9.1'
+	// https://mvnrepository.com/artifact/org.springframework.security/spring-security-test
+	testImplementation group: 'org.springframework.security', name: 'spring-security-test', version: '5.7.4'
+
+	testImplementation 'com.c4-soft.springaddons:spring-addons:6.0.2'
 
 
 
@@ -54,7 +58,7 @@ sonarqube {
 	properties {
 		property "sonar.projectKey", "sitas-backend"
 		property 'sonar.coverage.jacoco.xmlReportPaths', "${project.buildDir}/reports/jacoco/test/jacocoTestReport.xml"
-		property 'sonar.coverage.exclusions', "src/main/java/vx/sitas/sitas_backend/config/**, src/main/java/vx/sitas/sitas_backend/security/**, src/main/java/vx/sitas/sitas_backend/ServletInitializer.java"
-		property 'sonar.cpd.exclusions', "src/main/java/vx/sitas/sitas_backend/config/**, src/main/java/vx/sitas/sitas_backend/security/**"
+		property 'sonar.coverage.exclusions', "src/main/java/vx/sitas/sitas_backend/config/**, src/main/java/vx/sitas/sitas_backend/security/**, src/main/java/vx/sitas/sitas_backend/ServletInitializer.java, src/main/java/vx/sitas/sitas_backend/DemoApplication.java"
+		property 'sonar.cpd.exclusions', "src/main/java/vx/sitas/sitas_backend/config/**, src/main/java/vx/sitas/sitas_backend/security/**, src/main/java/vx/sitas/sitas_backend/DemoApplication.java"
 	}
 }

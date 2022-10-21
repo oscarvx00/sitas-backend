@@ -1,10 +1,10 @@
 package vx.sitas.sitas_backend.dto;
 
-public class StringReponse {
+public class StringResponse {
 
     String val;
 
-    public StringReponse(String val){
+    public StringResponse(String val){
         this.val = val;
     }
 
