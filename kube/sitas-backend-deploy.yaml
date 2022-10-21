@@ -47,3 +47,5 @@ spec:
                 secretKeyRef:
                   name: sitas-backend-secret
                   key: DISCORD_SECRET
+            - name: LOGIN_FRONT_REDIRECT
+              value: "http://oscarvx00.ddns.net:31000"
