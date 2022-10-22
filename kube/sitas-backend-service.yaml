@@ -6,7 +6,7 @@ metadata:
   labels:
     app: sitas-backend
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: sitas-backend
   ports:
