@@ -1,11 +1,10 @@
 package vx.sitas.sitas_backend.controller;
 
 
-import vx.sitas.sitas_backend.dto.CustomOAuth2User;
+import vx.sitas.sitas_backend.dto.internal.CustomOAuth2User;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.web.bind.annotation.*;
-import vx.sitas.sitas_backend.dto.StringResponse;
 
 import java.util.*;
 

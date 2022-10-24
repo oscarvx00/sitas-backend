@@ -2,6 +2,7 @@ package vx.sitas.sitas_backend.dto;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import vx.sitas.sitas_backend.dto.internal.StringResponse;
 
 public class StringResponseTest {
 

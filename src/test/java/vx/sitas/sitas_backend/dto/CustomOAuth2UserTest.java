@@ -2,6 +2,7 @@ package vx.sitas.sitas_backend.dto;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import vx.sitas.sitas_backend.dto.internal.CustomOAuth2User;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package vx.sitas.sitas_backend.dto;
+package vx.sitas.sitas_backend.dto.internal;
 
 public class StringResponse {
 
