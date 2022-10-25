@@ -57,4 +57,8 @@ public class RabbitDownloadRequest {
     public boolean isYoutube() {
         return youtube;
     }
+
+    public boolean isDirect() {
+        return direct;
+    }
 }
