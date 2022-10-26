@@ -49,3 +49,16 @@ spec:
                   key: DISCORD_SECRET
             - name: LOGIN_FRONT_REDIRECT
               value: "http://oscarvx00.ddns.net:31000"
+            - name: DOWNLOAD_REQUEST_EXCHANGE
+              value: "sitas-prod-exchange-downloadrequest"
+            - name: RABBITMQ_ENDPOINT
+              value: "goose-01.rmq2.cloudamqp.com"
+            - name: RABBITMQ_VHOST
+              value: oaoesvtq
+            - name: RABBITMQ_USER
+              value:
+            - name: RABBITMQ_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: sitas-backend-secret
+                  key: RABBITMQ_PASS
