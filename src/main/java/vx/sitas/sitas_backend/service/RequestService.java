@@ -7,6 +7,7 @@ import vx.sitas.sitas_backend.dto.rabbit.RabbitDownloadRequest;
 import vx.sitas.sitas_backend.service.rabbit.QueueService;
 
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -17,7 +18,7 @@ public class RequestService {
     @Autowired
     QueueService rabbitService;
 
-    Random random = new Random();
+    SecureRandom random = new SecureRandom();
 
 
     public void createDownloadRequests(String[] songsNames, String userId){
