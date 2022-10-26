@@ -17,6 +17,8 @@ public class RequestService {
     @Autowired
     QueueService rabbitService;
 
+    Random random = new Random();
+
 
     public void createDownloadRequests(String[] songsNames, String userId){
         for(String songName : songsNames){
@@ -54,6 +56,6 @@ public class RequestService {
 
         if(availableModules.size() == 0)    return null;
 
-        return availableModules.get(new Random().nextInt(availableModules.size()));
+        return availableModules.get(random.nextInt(availableModules.size()));
     }
 }
