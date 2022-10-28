@@ -1,11 +1,13 @@
 package vx.sitas.sitas_backend.dto.mongo;
 
 import org.bson.types.ObjectId;
+import org.springframework.data.mongodb.core.mapping.Document;
 import vx.sitas.sitas_backend.dto.internal.SongDownload;
 
+@Document("SongDownload")
 public class SongDownloadPOJO {
 
-    private ObjectId id;
+    private String _id;
     private String userId;
     private String downloadId;
     private String songName;
@@ -16,12 +18,12 @@ public class SongDownloadPOJO {
     public SongDownloadPOJO() {}
 
 
-    public ObjectId getId() {
-        return id;
+    public String getId() {
+        return _id;
     }
 
-    public void setId(ObjectId id) {
-        this.id = id;
+    public void setId(String id) {
+        this._id = id;
     }
 
     public String getUserId() {

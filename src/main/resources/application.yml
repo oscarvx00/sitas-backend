@@ -28,3 +28,7 @@ spring:
             user-info-uri: https://discord.com/api/users/@me
             revokeTokenUri: https://discord.com/api/oauth2/token/revoke
             userNameAttribute: username
+  data:
+    mongodb:
+      uri: ${MONGODB_ENDPOINT}
+      database: ${MONGODB_DATABASE}

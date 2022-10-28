@@ -5,7 +5,9 @@ import org.springframework.security.web.authentication.Http403ForbiddenEntryPoin
 import org.springframework.stereotype.Service;
 import vx.sitas.sitas_backend.dto.internal.SongDownload;
 import vx.sitas.sitas_backend.dto.internal.SongDownloadListDTO;
+import vx.sitas.sitas_backend.dto.mongo.SongDownloadPOJO;
 import vx.sitas.sitas_backend.service.database.DAO;
+import vx.sitas.sitas_backend.service.database.SongDownloadRepository;
 
 import java.nio.file.AccessDeniedException;
 import java.util.ArrayList;
@@ -16,16 +18,16 @@ public class SongDownloadService {
 
 
     @Autowired
-    private DAO mongoManager;
+    private SongDownloadRepository songDownloadRepository;
 
     public List<SongDownloadListDTO> getSongDownloads(String userId) throws Exception{
         if(userId == null)  throw new AccessDeniedException("Invalid user");
 
-        List<SongDownload> dbList = mongoManager.getSongDownloads(userId);
+        List<SongDownloadPOJO> dbList = songDownloadRepository.getSongDownloads(userId);
 
         List<SongDownloadListDTO> returnList = new ArrayList<>();
-        for(SongDownload songDownload : dbList){
-            returnList.add(new SongDownloadListDTO(songDownload));
+        for(SongDownloadPOJO songDownload : dbList){
+            returnList.add(new SongDownloadListDTO(songDownload.toSongDownload()));
         }
 
         return returnList;
