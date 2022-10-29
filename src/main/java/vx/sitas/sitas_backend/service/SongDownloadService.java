@@ -1,12 +1,9 @@
 package vx.sitas.sitas_backend.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
 import org.springframework.stereotype.Service;
-import vx.sitas.sitas_backend.dto.internal.SongDownload;
 import vx.sitas.sitas_backend.dto.internal.SongDownloadListDTO;
 import vx.sitas.sitas_backend.dto.mongo.SongDownloadPOJO;
-import vx.sitas.sitas_backend.service.database.DAO;
 import vx.sitas.sitas_backend.service.database.SongDownloadRepository;
 
 import java.nio.file.AccessDeniedException;

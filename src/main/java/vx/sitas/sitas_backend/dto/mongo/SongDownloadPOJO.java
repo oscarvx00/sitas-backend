@@ -18,6 +18,16 @@ public class SongDownloadPOJO {
     public SongDownloadPOJO() {}
 
 
+    public SongDownloadPOJO(String _id, String userId, String downloadId, String songName, boolean stored, String status, String storageNodeName) {
+        this._id = _id;
+        this.userId = userId;
+        this.downloadId = downloadId;
+        this.songName = songName;
+        this.stored = stored;
+        this.status = status;
+        this.storageNodeName = storageNodeName;
+    }
+
     public String getId() {
         return _id;
     }
