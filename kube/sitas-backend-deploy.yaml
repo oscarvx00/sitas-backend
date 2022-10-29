@@ -62,3 +62,10 @@ spec:
                 secretKeyRef:
                   name: sitas-backend-secret
                   key: RABBITMQ_PASS
+            - name: MONGODB_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: sitas-backend-secret
+                  key: MONGODB_ENDPOINT
+            - name: MONGODB_DATABASE
+              value: sitas-prod
