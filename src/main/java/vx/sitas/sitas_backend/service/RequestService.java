@@ -3,7 +3,10 @@ package vx.sitas.sitas_backend.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import vx.sitas.sitas_backend.dto.internal.SongDownload;
+import vx.sitas.sitas_backend.dto.mongo.SongDownloadPOJO;
 import vx.sitas.sitas_backend.dto.rabbit.RabbitDownloadRequest;
+import vx.sitas.sitas_backend.service.database.SongDownloadRepository;
 import vx.sitas.sitas_backend.service.rabbit.QueueService;
 
 
@@ -18,18 +21,31 @@ public class RequestService {
     @Autowired
     QueueService rabbitService;
 
+    @Autowired
+    SongDownloadRepository songDownloadRepository;
+
     SecureRandom random = new SecureRandom();
 
 
     public void createDownloadRequests(String[] songsNames, String userId){
         for(String songName : songsNames){
             RabbitDownloadRequest downloadRequest = new RabbitDownloadRequest(
-                    songName,
+                    songName.trim(),
                     userId
             );
             downloadRequest = setDestModules(downloadRequest);
             String selectedModule = decideModule(downloadRequest);
             if(selectedModule == null) continue;
+
+            SongDownload songDownload = new SongDownload(
+                    downloadRequest.getDownloadId(),
+                    downloadRequest.getSongName(),
+                    "DOWNLOADING",
+                    null,
+                    downloadRequest.getUserId(),
+                    false
+            );
+            songDownloadRepository.insert(new SongDownloadPOJO(songDownload));
 
             rabbitService.sendRequest(downloadRequest, selectedModule);
         }

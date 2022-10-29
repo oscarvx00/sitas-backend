@@ -25,4 +25,20 @@ public class SongDownload {
     public String getSongName() {
         return songName;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public String getStorageNodeName() {
+        return storageNodeName;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public boolean isStored() {
+        return stored;
+    }
 }

@@ -1,12 +1,14 @@
 package vx.sitas.sitas_backend.dto.mongo;
 
 import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import vx.sitas.sitas_backend.dto.internal.SongDownload;
 
 @Document("SongDownload")
 public class SongDownloadPOJO {
 
+    @Id
     private String _id;
     private String userId;
     private String downloadId;
@@ -26,6 +28,15 @@ public class SongDownloadPOJO {
         this.stored = stored;
         this.status = status;
         this.storageNodeName = storageNodeName;
+    }
+
+    public SongDownloadPOJO(SongDownload source){
+        this.userId = source.getUserId();
+        this.downloadId = source.getDownloadId();
+        this.songName = source.getSongName();
+        this.stored = source.isStored();
+        this.status = source.getStatus();
+        this.storageNodeName = source.getStorageNodeName();
     }
 
     public String getId() {

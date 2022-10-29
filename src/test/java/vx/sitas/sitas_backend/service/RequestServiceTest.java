@@ -5,12 +5,16 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import vx.sitas.sitas_backend.dto.rabbit.RabbitDownloadRequest;
 import vx.sitas.sitas_backend.service.RequestService;
+import vx.sitas.sitas_backend.service.database.SongDownloadRepository;
 import vx.sitas.sitas_backend.service.rabbit.QueueService;
 
 
 @ExtendWith(MockitoExtension.class)
+@DataMongoTest
 public class RequestServiceTest {
 
     @Mock
@@ -20,6 +24,9 @@ public class RequestServiceTest {
     ArgumentCaptor<RabbitDownloadRequest> sendDownloadRequestCaptor;
     @Captor
     ArgumentCaptor<String> sendDownloadRequestModuleCaptor;
+
+    @MockBean
+    private SongDownloadRepository songDownloadRepository;
 
     @InjectMocks
     RequestService requestService;

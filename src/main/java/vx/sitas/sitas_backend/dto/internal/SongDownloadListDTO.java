@@ -5,9 +5,12 @@ public class SongDownloadListDTO {
     private String name;
     private String downloadId;
 
+    private String status;
+
     public SongDownloadListDTO(SongDownload songDownload){
         this.name = songDownload.getSongName();
         this.downloadId = songDownload.getDownloadId();
+        this.status = songDownload.getStatus();
     }
 
     public String getName() {
