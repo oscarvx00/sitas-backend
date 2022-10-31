@@ -28,4 +28,12 @@ public class SongDownloadListDTO {
     public void setDownloadId(String downloadId) {
         this.downloadId = downloadId;
     }
+
+    public boolean isReady() {
+        return ready;
+    }
+
+    public void setReady(boolean ready) {
+        this.ready = ready;
+    }
 }

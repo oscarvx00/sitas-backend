@@ -10,5 +10,11 @@ public interface SongDownloadRepository extends MongoRepository<SongDownloadPOJO
     @Query("{userId:'?0'}")
     List<SongDownloadPOJO> getSongDownloads(String userId);
 
+    @Query("{downloadId: '?0'}")
+    SongDownloadPOJO getSongDownloadById(String downloadId);
+
+    @Query(value = "{downloadId : '?0'}", delete = true)
+    SongDownloadPOJO deleteByDownloadId(String downloadId);
+
     public long count();
 }
