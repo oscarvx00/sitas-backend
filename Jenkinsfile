@@ -17,6 +17,10 @@ pipeline {
                 DOWNLOAD_REQUEST_EXCHANGE = "sitas-test-exchange-downloadrequest"
                 MONGODB_ENDPOINT = credentials("MONGODB_ENDPOINT")
                 MONGODB_DATABASE = "sitas-test"
+                MINIO_NODE_ENDPOINT = "http://oscarvx00.ddns.net:10000"
+                MINIO_NODE_USER = credentials("MINIO_INTERNAL_USER")
+                MINIO_NODE_PASS = credentials("MINIO_INTERNAL_PASS")
+                MINIO_NODE_BUCKET = "node-storage-test"
             }
             steps {
                 dir('sources'){
