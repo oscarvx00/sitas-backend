@@ -35,7 +35,8 @@ public class SongDownloadRepositoryTest {
                 "test_song_name",
                 true,
                 "test_status",
-                "test_storage_node_name"
+                "test_storage_node_name",
+                "test_download_name1"
         );
 
         //when
@@ -73,7 +74,8 @@ public class SongDownloadRepositoryTest {
                 "test_song_name",
                 true,
                 "test_status",
-                "test_storage_node_name"
+                "test_storage_node_name",
+                "test_download_name1"
         );
 
         //when
@@ -101,7 +103,8 @@ public class SongDownloadRepositoryTest {
                 "test_song_name",
                 true,
                 "test_status",
-                "test_storage_node_name"
+                "test_storage_node_name",
+                "test_download_name1"
         );
 
         //when

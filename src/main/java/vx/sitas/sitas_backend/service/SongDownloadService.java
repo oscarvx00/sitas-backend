@@ -62,9 +62,9 @@ public class SongDownloadService {
             throw new Exception("Storage node not found " + songDownload.getStorageNodeName());
         }
 
-        String downloadUrl = storageNode.getDownloadUrl(songDownload.getSongName() + ".mp3");
+        String downloadUrl = storageNode.getDownloadUrl(songDownload.getDownloadName() + ".mp3");
         if(downloadUrl == null){
-            throw new Exception("Song name not found in storage node " + songDownload.getSongName());
+            throw new Exception("Song name not found in storage node " + songDownload.getDownloadName());
         }
 
         this.songDownloadRepository.deleteByDownloadId(songDownload.getDownloadId());

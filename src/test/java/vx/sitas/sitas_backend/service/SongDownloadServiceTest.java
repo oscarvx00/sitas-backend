@@ -103,7 +103,8 @@ public class SongDownloadServiceTest {
                                 "test_song_name",
                                 true,
                                 "test_status",
-                                "test_storage_node_name"
+                                "test_storage_node_name",
+                                "test_download_name1"
                         ),
                         new SongDownloadPOJO(
                                 "_id2",
@@ -112,7 +113,8 @@ public class SongDownloadServiceTest {
                                 "test_song_name",
                                 true,
                                 "test_status",
-                                "test_storage_node_name"
+                                "test_storage_node_name",
+                                "test_download_name2"
                         )
                 )
         ));
@@ -125,7 +127,8 @@ public class SongDownloadServiceTest {
                                 "test_song_name",
                                 true,
                                 "test_status",
-                                "oscar-minio"
+                                "oscar-minio",
+                                "test_download_name1"
                         ));
         Mockito.when(songDownloadRepository.getSongDownloadById(SONG_DOWNLOAD_ID_BAD_SONGNAME)).thenReturn(
                 new SongDownloadPOJO(
@@ -135,7 +138,8 @@ public class SongDownloadServiceTest {
                         "test_song_name_bad",
                         true,
                         "test_status",
-                        "oscar-minio"
+                        "oscar-minio",
+                        "test_download_name2"
                 ));
 
     }
@@ -158,7 +162,7 @@ public class SongDownloadServiceTest {
         //Call method
         StringResponse res = songDownloadService.getSongDownloadUrl(SONG_DOWNLOAD_ID);
 
-        Assertions.assertTrue(res.getVal().contains("test_song_name.mp3"));
+        Assertions.assertTrue(res.getVal().contains("test_download_name1.mp3"));
 
     }
 

@@ -17,10 +17,12 @@ public class SongDownloadPOJO {
     private String status;
     private String storageNodeName;
 
+    private String downloadName;
+
     public SongDownloadPOJO() {}
 
 
-    public SongDownloadPOJO(String _id, String userId, String downloadId, String songName, boolean stored, String status, String storageNodeName) {
+    public SongDownloadPOJO(String _id, String userId, String downloadId, String songName, boolean stored, String status, String storageNodeName, String downloadName) {
         this._id = _id;
         this.userId = userId;
         this.downloadId = downloadId;
@@ -28,6 +30,7 @@ public class SongDownloadPOJO {
         this.stored = stored;
         this.status = status;
         this.storageNodeName = storageNodeName;
+        this.downloadName = downloadName;
     }
 
     public SongDownloadPOJO(SongDownload source){
@@ -95,6 +98,10 @@ public class SongDownloadPOJO {
         this.storageNodeName = storageNodeName;
     }
 
+    public String getDownloadName() {
+        return downloadName;
+    }
+
     public SongDownload toSongDownload(){
         return new SongDownload(
                 this.downloadId,
@@ -102,7 +109,8 @@ public class SongDownloadPOJO {
                 this.status,
                 this.storageNodeName,
                 this.userId,
-                this.stored
+                this.stored,
+                this.downloadName
         );
     }
 }

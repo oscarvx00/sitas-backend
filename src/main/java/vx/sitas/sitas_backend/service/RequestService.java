@@ -43,7 +43,8 @@ public class RequestService {
                     "DOWNLOADING",
                     null,
                     downloadRequest.getUserId(),
-                    false
+                    false,
+                    ""
             );
             songDownloadRepository.insert(new SongDownloadPOJO(songDownload));
 
