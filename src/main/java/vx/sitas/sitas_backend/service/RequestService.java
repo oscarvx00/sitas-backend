@@ -63,7 +63,7 @@ public class RequestService {
             downloadRequest.setYoutube(true);
             downloadRequest.setDirect(true);
         }
-        else{
+        else if(!songName.contains(".com")){
             //ENABLE ALL
             downloadRequest.setYoutube(true);
             downloadRequest.setSoundcloud(true);
