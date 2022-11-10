@@ -59,8 +59,13 @@ public class RequestService {
             downloadRequest.setSoundcloud(true);
             downloadRequest.setDirect(true);
         }
-        else if(!songName.contains(".")){
+        else if(songName.startsWith("https://www.youtube.com") || songName.startsWith("www.youtube.com")){
+            downloadRequest.setYoutube(true);
+            downloadRequest.setDirect(true);
+        }
+        else{
             //ENABLE ALL
+            downloadRequest.setYoutube(true);
             downloadRequest.setSoundcloud(true);
             downloadRequest.setDirect(false);
         }
@@ -71,6 +76,7 @@ public class RequestService {
     private String decideModule(RabbitDownloadRequest downloadRequest){
         List<String> availableModules = new ArrayList<>();
         if(downloadRequest.isSoundcloud()) availableModules.add("soundcloud");
+        if(downloadRequest.isYoutube()) availableModules.add("youtube");
 
         if(availableModules.size() == 0)    return null;
 
