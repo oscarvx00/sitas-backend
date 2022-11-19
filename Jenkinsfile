@@ -12,9 +12,8 @@ pipeline {
         stage ('Test'){
             environment {
                 scannerHome = tool 'SonarQubeScanner'
-                RABBITMQ_USER = credentials("RABBITMQ_USER")
-                RABBITMQ_PASS = credentials("RABBITMQ_PASS")
-                DOWNLOAD_REQUEST_EXCHANGE = "sitas-test-exchange-downloadrequest"
+                AZURE_SERVICE_BUS_CONNECTION_STRING = credentials("AZURE_SERVICE_BUS_CONNECTION_STRING_BACKEND_TEST")
+                QUEUE_DOWNLOAD_COMPLETED = "download-completed-dev"
                 MONGODB_ENDPOINT = credentials("MONGODB_ENDPOINT")
                 MONGODB_DATABASE = "sitas-test"
                 MINIO_NODE_ENDPOINT = "http://oscarvx00.ddns.net:10000"
