@@ -7,10 +7,9 @@ import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import vx.sitas.sitas_backend.dto.rabbit.RabbitDownloadRequest;
-import vx.sitas.sitas_backend.service.RequestService;
+import vx.sitas.sitas_backend.dto.queue.QueueDownloadRequest;
 import vx.sitas.sitas_backend.service.database.SongDownloadRepository;
-import vx.sitas.sitas_backend.service.rabbit.QueueService;
+import vx.sitas.sitas_backend.service.queue.QueueService;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -21,9 +20,7 @@ public class RequestServiceTest {
     private QueueService queueService;
 
     @Captor
-    ArgumentCaptor<RabbitDownloadRequest> sendDownloadRequestCaptor;
-    @Captor
-    ArgumentCaptor<String> sendDownloadRequestModuleCaptor;
+    ArgumentCaptor<QueueDownloadRequest> sendDownloadRequestCaptor;
 
     @MockBean
     private SongDownloadRepository songDownloadRepository;
@@ -37,14 +34,13 @@ public class RequestServiceTest {
 
         requestService.createDownloadRequests(songs, "test_user");
 
-        Mockito.verify(queueService).sendRequest(sendDownloadRequestCaptor.capture(), sendDownloadRequestModuleCaptor.capture());
+        Mockito.verify(queueService).sendRequest(sendDownloadRequestCaptor.capture());
 
-        RabbitDownloadRequest capturedDownloadRequest = sendDownloadRequestCaptor.getValue();
+        QueueDownloadRequest capturedDownloadRequest = sendDownloadRequestCaptor.getValue();
         Assertions.assertTrue(capturedDownloadRequest.isSoundcloud());
         Assertions.assertFalse(capturedDownloadRequest.isSpotify());
         Assertions.assertFalse(capturedDownloadRequest.isYoutube());
         Assertions.assertTrue(capturedDownloadRequest.isDirect());
-        Assertions.assertEquals("soundcloud", sendDownloadRequestModuleCaptor.getValue());
     }
 
     @Test
@@ -53,14 +49,13 @@ public class RequestServiceTest {
 
         requestService.createDownloadRequests(songs, "test_user");
 
-        Mockito.verify(queueService).sendRequest(sendDownloadRequestCaptor.capture(), sendDownloadRequestModuleCaptor.capture());
+        Mockito.verify(queueService).sendRequest(sendDownloadRequestCaptor.capture());
 
-        RabbitDownloadRequest capturedDownloadRequest = sendDownloadRequestCaptor.getValue();
+        QueueDownloadRequest capturedDownloadRequest = sendDownloadRequestCaptor.getValue();
         Assertions.assertTrue(capturedDownloadRequest.isSoundcloud());
         Assertions.assertFalse(capturedDownloadRequest.isSpotify());
         Assertions.assertFalse(capturedDownloadRequest.isYoutube());
         Assertions.assertTrue(capturedDownloadRequest.isDirect());
-        Assertions.assertEquals("soundcloud", sendDownloadRequestModuleCaptor.getValue());
     }
 
     @Test
@@ -69,20 +64,14 @@ public class RequestServiceTest {
 
         requestService.createDownloadRequests(songs, "test_user");
 
-        Mockito.verify(queueService).sendRequest(sendDownloadRequestCaptor.capture(), sendDownloadRequestModuleCaptor.capture());
+        Mockito.verify(queueService).sendRequest(sendDownloadRequestCaptor.capture());
 
-        RabbitDownloadRequest capturedDownloadRequest = sendDownloadRequestCaptor.getValue();
-        String capturedSelectedModule = sendDownloadRequestModuleCaptor.getValue();
+        QueueDownloadRequest capturedDownloadRequest = sendDownloadRequestCaptor.getValue();
         Assertions.assertFalse(capturedDownloadRequest.isDirect());
         Assertions.assertTrue(
                 capturedDownloadRequest.isYoutube() ||
                         capturedDownloadRequest.isSoundcloud() ||
                         capturedDownloadRequest.isSpotify()
-        );
-        Assertions.assertTrue(
-                capturedSelectedModule.equals("soundcloud") ||
-                        capturedSelectedModule.equals("spotify") ||
-                        capturedSelectedModule.equals("youtube")
         );
     }
 
@@ -91,7 +80,7 @@ public class RequestServiceTest {
         final String[] songs = {"https://dummy.com"};
         requestService.createDownloadRequests(songs, "test_user");
 
-        Mockito.verify(queueService, Mockito.times(0)).sendRequest(sendDownloadRequestCaptor.capture(), sendDownloadRequestModuleCaptor.capture());
+        Mockito.verify(queueService, Mockito.times(0)).sendRequest(sendDownloadRequestCaptor.capture());
     }
 
     //TODO: Youtube tests

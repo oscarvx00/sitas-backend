@@ -1,8 +1,8 @@
-package vx.sitas.sitas_backend.dto.rabbit;
+package vx.sitas.sitas_backend.dto.queue;
 
 import java.util.UUID;
 
-public class RabbitDownloadRequest {
+public class QueueDownloadRequest {
 
     private String userId;
     private String downloadId;
@@ -12,7 +12,7 @@ public class RabbitDownloadRequest {
     private boolean youtube = false;
     private boolean direct;
 
-    public RabbitDownloadRequest(String songName, String userId){
+    public QueueDownloadRequest(String songName, String userId){
         this.songName = songName;
         this.userId = userId;
         this.downloadId = UUID.randomUUID().toString();

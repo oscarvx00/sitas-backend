@@ -49,19 +49,6 @@ spec:
                   key: DISCORD_SECRET
             - name: LOGIN_FRONT_REDIRECT
               value: "http://oscarvx00.ddns.net:31000"
-            - name: DOWNLOAD_REQUEST_EXCHANGE
-              value: "sitas-prod-exchange-downloadrequest"
-            - name: RABBITMQ_ENDPOINT
-              value: "goose-01.rmq2.cloudamqp.com"
-            - name: RABBITMQ_VHOST
-              value: oaoesvtq
-            - name: RABBITMQ_USER
-              value: oaoesvtq
-            - name: RABBITMQ_PASS
-              valueFrom:
-                secretKeyRef:
-                  name: sitas-backend-secret
-                  key: RABBITMQ_PASS
             - name: MONGODB_ENDPOINT
               valueFrom:
                 secretKeyRef:
@@ -69,3 +56,10 @@ spec:
                   key: MONGODB_ENDPOINT
             - name: MONGODB_DATABASE
               value: sitas-prod
+            - name: DOWNLOAD_REQUEST_QUEUE
+              value: download-request-prod
+            - name: AZURE_SERVICE_BUS_CONNECTION_STRING
+              valueFrom:
+                secretKeyRef:
+                  name: sitas-backend-secret
+                  key: AZURE_SERVICE_BUS_CONNECTION_STRING

@@ -2,23 +2,22 @@ package vx.sitas.sitas_backend.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import vx.sitas.sitas_backend.dto.internal.SongDownload;
 import vx.sitas.sitas_backend.dto.mongo.SongDownloadPOJO;
-import vx.sitas.sitas_backend.dto.rabbit.RabbitDownloadRequest;
+import vx.sitas.sitas_backend.dto.queue.QueueDownloadRequest;
 import vx.sitas.sitas_backend.service.database.SongDownloadRepository;
-import vx.sitas.sitas_backend.service.rabbit.QueueService;
+import vx.sitas.sitas_backend.service.queue.QueueService;
 
 
 import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 @Service
 public class RequestService {
 
     @Autowired
+    @Qualifier("azureQueue")
     QueueService rabbitService;
 
     @Autowired
@@ -29,13 +28,12 @@ public class RequestService {
 
     public void createDownloadRequests(String[] songsNames, String userId){
         for(String songName : songsNames){
-            RabbitDownloadRequest downloadRequest = new RabbitDownloadRequest(
+            QueueDownloadRequest downloadRequest = new QueueDownloadRequest(
                     songName.trim(),
                     userId
             );
             downloadRequest = setDestModules(downloadRequest);
-            String selectedModule = decideModule(downloadRequest);
-            if(selectedModule == null) continue;
+            if(!checkAnyModuleActive(downloadRequest)) continue;
 
             SongDownload songDownload = new SongDownload(
                     downloadRequest.getDownloadId(),
@@ -48,11 +46,11 @@ public class RequestService {
             );
             songDownloadRepository.insert(new SongDownloadPOJO(songDownload));
 
-            rabbitService.sendRequest(downloadRequest, selectedModule);
+            rabbitService.sendRequest(downloadRequest);
         }
     }
 
-    private RabbitDownloadRequest setDestModules(RabbitDownloadRequest downloadRequest){
+    private QueueDownloadRequest setDestModules(QueueDownloadRequest downloadRequest){
         String songName = downloadRequest.getSongName();
 
         if(songName.startsWith("https://soundcloud.com") || songName.startsWith("soundcloud.com")){
@@ -73,13 +71,10 @@ public class RequestService {
         return downloadRequest;
     }
 
-    private String decideModule(RabbitDownloadRequest downloadRequest){
-        List<String> availableModules = new ArrayList<>();
-        if(downloadRequest.isSoundcloud()) availableModules.add("soundcloud");
-        if(downloadRequest.isYoutube()) availableModules.add("youtube");
-
-        if(availableModules.size() == 0)    return null;
-
-        return availableModules.get(random.nextInt(availableModules.size()));
+    private boolean checkAnyModuleActive(QueueDownloadRequest queueDownloadRequest){
+        return queueDownloadRequest.isYoutube()
+                || queueDownloadRequest.isSpotify()
+                || queueDownloadRequest.isSoundcloud();
     }
+
 }
