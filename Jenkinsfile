@@ -13,7 +13,7 @@ pipeline {
             environment {
                 scannerHome = tool 'SonarQubeScanner'
                 AZURE_SERVICE_BUS_CONNECTION_STRING = credentials("AZURE_SERVICE_BUS_CONNECTION_STRING_BACKEND_TEST")
-                QUEUE_DOWNLOAD_COMPLETED = "download-completed-dev"
+                QUEUE_DOWNLOAD_COMPLETED = "download-completed-test"
                 MONGODB_ENDPOINT = credentials("MONGODB_ENDPOINT")
                 MONGODB_DATABASE = "sitas-test"
                 MINIO_NODE_ENDPOINT = "http://oscarvx00.ddns.net:10000"
